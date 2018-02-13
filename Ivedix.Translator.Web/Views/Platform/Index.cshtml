@@ -1,0 +1,28 @@
+﻿@model HomeViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Title</h2>
+
+
+@foreach (var item in Model.Platforms)
+{
+    <div class="col-sm-4 col-lg-4 col-md-4">
+        <div class="thumbnail">
+            <img src="" alt="">
+            <div class="caption">
+                <h3 class="pull-right"><a asp-controller="Platform" asp-action="Details" asp-route-id="@item.Id">@item.Name</a></h3>
+                <h3>
+                    @item.Id
+                </h3>
+                <p>Details:@item.Name</p>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+
