@@ -2,6 +2,7 @@
 using Ivedix.Translator.Web.Data.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,6 +24,10 @@ namespace Ivedix.Translator.Web
         {
             services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<AppDbContext>();
+
             services.AddTransient<IPlatformRepository, PlatformRepository>();
             //services.AddTransient<IPlatformRepository, MockPlatformRepository>();
             services.AddMvc();
@@ -34,6 +39,9 @@ namespace Ivedix.Translator.Web
             app.UseDeveloperExceptionPage();
             app.UseStatusCodePages();
             app.UseStaticFiles();
+
+            app.UseAuthentication();
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
