@@ -1,5 +1,5 @@
-﻿using Ivedix.Translator.Web.Models;
-using Ivedix.Translator.Web.Models.Repositories;
+﻿using Ivedix.Translator.Web.Data.Repositories;
+using Ivedix.Translator.Web.Models;
 using Ivedix.Translator.Web.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

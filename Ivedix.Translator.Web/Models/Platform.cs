@@ -9,5 +9,6 @@ namespace Ivedix.Translator.Web.Models
         [Required]
         [StringLength(100, ErrorMessage = "Platfrom name is required")]
         public string Name { get; set; }
+
     }
 }

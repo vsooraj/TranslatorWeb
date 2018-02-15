@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using Ivedix.Translator.Web.Models;
+using System.Collections.Generic;
 using System.Linq;
 
-namespace Ivedix.Translator.Web.Models.Repositories
+namespace Ivedix.Translator.Web.Data.Repositories
 {
     public class MockPlatformRepository : IPlatformRepository
     {
