@@ -17,9 +17,32 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-controller="Home" asp-action="Index" class="navbar-brand">Translator</a></li>
-                    <li><a asp-controller="Platform" asp-action="Create" class="navbar-brand">Create</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Categories <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a asp-controller="Home" asp-action="Index">Dashboard</a></li>
+                            <li><a asp-controller="Platform" asp-action="Create">Platform</a></li>
+                            <li><a asp-controller="Platform" asp-action="Create">Language</a></li>
+                            <li><a asp-controller="Platform" asp-action="Create">Filegroup</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a asp-controller="Platform" asp-action="Create">Keys</a></li>
+                            <li><a asp-controller="Platform" asp-action="Create">Values</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a asp-controller="Platform" asp-action="Create">Translation</a></li>
+                            <li><a asp-controller="Platform" asp-action="Create">Activity Log</a></li>
 
+                        </ul>
+                    </li>
                 </ul>
+                <form class="navbar-form navbar-left">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                    <button type="submit" class="btn btn-default">Search</button>
+                    <button type="submit" class="btn btn-warning">Download IOS</button>
+                    <button type="submit" class="btn btn-warning">Download Android</button>
+
+                </form>
                 @if (SignInManager.IsSignedIn(User))
                 {
                     <form asp-area="" asp-controller="Account" asp-action="Logout" id="logoutForm"
@@ -44,5 +67,8 @@
             @RenderBody()
         </div>
     </div>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/lib/bootstrap/js/tab.js"></script>
 </body>
 </html>
