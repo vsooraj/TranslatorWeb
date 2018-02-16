@@ -11,7 +11,8 @@ namespace Ivedix.Translator.Web.Data
         {
 
         }
-
+        public DbSet<Category> Category { get; set; }
         public DbSet<Platform> Platforms { get; set; }
+
     }
 }

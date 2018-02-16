@@ -1,6 +1,6 @@
 ﻿namespace Ivedix.Translator.Web.Models
 {
-    public class Lanaguage
+    public class Language
     {
         public int Id { get; set; }
         public string Name { get; set; }
