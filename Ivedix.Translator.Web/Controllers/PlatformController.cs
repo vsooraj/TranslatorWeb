@@ -1,12 +1,14 @@
 ﻿using Ivedix.Translator.Web.Data.Repositories;
 using Ivedix.Translator.Web.Models;
 using Ivedix.Translator.Web.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 
 namespace Ivedix.Translator.Web.Controllers
 {
+    [Authorize]
     public class PlatformController : Controller
     {
         private readonly IPlatformRepository _platformRepository;

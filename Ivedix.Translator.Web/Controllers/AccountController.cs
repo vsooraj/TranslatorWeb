@@ -1,4 +1,5 @@
 ﻿using Ivedix.Translator.Web.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -35,7 +36,7 @@ namespace Ivedix.Translator.Web.Controllers
                 var result = await _signInManager.PasswordSignInAsync(user, loginViewModel.Password, false, false);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Platform");
                 }
             }
 
@@ -61,6 +62,34 @@ namespace Ivedix.Translator.Web.Controllers
                 }
             }
             return View(loginViewModel);
+        }
+        [AllowAnonymous]
+        public IActionResult GoogleLogin(string returnUrl = null)
+        {
+            var redirectUrl = Url.Action("GoogleLoginCallback", "Account", new { ReturnUrl = returnUrl });
+            var properties = _signInManager.ConfigureExternalAuthenticationProperties("Google", redirectUrl);
+            return Challenge(properties, "Google");
+        }
+        public async Task<IActionResult> GoogleLoginCallback(string returnUrl = null, string serviceError = null)
+        {
+            if (serviceError != null)
+            {
+                ModelState.AddModelError(string.Empty, $"Error from external provider:{serviceError}");
+                return View(nameof(Login));
+            }
+            var info = await _signInManager.GetExternalLoginInfoAsync();
+            if (info == null)
+            {
+                return RedirectToAction(nameof(Login));
+            }
+            var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, false);
+            if (result.Succeeded)
+            {
+                if (returnUrl == null)
+                    return RedirectToAction("index", "platform");
+                return Redirect(returnUrl);
+            }
+            return RedirectToAction("index", "home");
         }
 
         [HttpPost]

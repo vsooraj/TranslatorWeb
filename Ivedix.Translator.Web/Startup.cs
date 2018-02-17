@@ -26,8 +26,14 @@ namespace Ivedix.Translator.Web
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<IdentityUser, IdentityRole>()
-                .AddEntityFrameworkStores<AppDbContext>();
+                .AddEntityFrameworkStores<AppDbContext>()
+                .AddDefaultTokenProviders();
 
+            services.AddAuthentication().AddGoogle(googleOptions =>
+            {
+                googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
+                googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+            });
             services.AddTransient<IPlatformRepository, PlatformRepository>();
             //services.AddTransient<IPlatformRepository, MockPlatformRepository>();
             services.AddMvc();
@@ -37,6 +43,9 @@ namespace Ivedix.Translator.Web
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseDeveloperExceptionPage();
+            //app.UseRewriter(
+            //    new RewriteOptions()
+            //    .AddRedirectToHttpsPermanent());
             app.UseStatusCodePages();
             app.UseStaticFiles();
 

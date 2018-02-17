@@ -1,4 +1,14 @@
 ﻿@{
     Layout = "_HomeLayout";
-    ViewData["Title"] = "Index";
 }
+<div class="container">
+    <div class="split left">
+        <h1>Guest</h1>
+        <a asp-controller="Account" asp-action="GoogleLogin" class="button">Read More</a>
+    </div>
+    <div class="split right">
+        <h1>Registered Users</h1>
+        <a asp-controller="Account" asp-action="Login" class="button">Read More</a>
+    </div>
+</div>
+
