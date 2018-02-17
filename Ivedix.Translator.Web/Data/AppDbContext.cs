@@ -12,7 +12,14 @@ namespace Ivedix.Translator.Web.Data
 
         }
         public DbSet<Category> Category { get; set; }
+        public DbSet<Filegroup> Filegroups { get; set; }
+        public DbSet<Key> Keys { get; set; }
+        public DbSet<Language> Languages { get; set; }
+        public DbSet<Log> Logs { get; set; }
         public DbSet<Platform> Platforms { get; set; }
+        public DbSet<Translation> Translations { get; set; }
+        public DbSet<Platformkey> Platformkeys { get; set; }
+
 
     }
 }

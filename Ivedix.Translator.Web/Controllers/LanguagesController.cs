@@ -2,83 +2,77 @@
 using Ivedix.Translator.Web.Data.Repositories;
 using Ivedix.Translator.Web.Models;
 using Ivedix.Translator.Web.ViewModels;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 
 namespace Ivedix.Translator.Web.Controllers
 {
-    [Authorize]
-    public class PlatformController : Controller
+    public class LanguagesController : Controller
     {
         private readonly AppDbContext _context;
-        private readonly IPlatformRepository _platformRepository;
+        private ILanguageRepository _languageRepository;
 
-        public PlatformController(AppDbContext context, IPlatformRepository platformRepository)
+        public LanguagesController(AppDbContext context, ILanguageRepository languageRepository)
         {
             _context = context;
-            _platformRepository = platformRepository;
+            _languageRepository = languageRepository;
+
         }
-        // GET: Key
+        // GET: Languages
         public ActionResult Index()
         {
             ViewBag.Title = "Welcome to Mi-Translator";
-            //var platforms = _platformRepository.GetAllPlatforms().OrderByDescending(p => p.Name);
-            var platforms = _context.Platforms.ToList();
-            var platformViewModel = new PlatformViewModel()
+            //var languages = _languageRepository.GetAllLanguages().OrderByDescending(p => p.Name);
+            var languages = _context.Languages.ToList();
+            var languageViewModel = new LanguageViewModel()
             {
-                Title = "Platform",
-                Platforms = platforms
+                Title = "Language",
+                Languages = languages
             };
-            return View(platformViewModel);
+            return View(languageViewModel);
         }
 
-
-        // GET: Platform/Details/5
-        public IActionResult Details(int id)
+        // GET: Languages/Details/5
+        public ActionResult Details(int id)
         {
-            var platform = _platformRepository.GetPlatformById(id);
-            if (platform == null) return NotFound();
-            return View(platform);
+            return View();
         }
 
-        // GET: Platform/Create
+        // GET: Languages/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Platform/Create
+        // POST: Languages/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Platform model)
+        public ActionResult Create(Language language)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    //_platformRepository.AddPlatform(model);
-                    _context.Platforms.Add(model);
+                    _context.Languages.Add(language);
                     _context.SaveChanges();
                     return RedirectToAction("Index");
                 }
-                return View(model);
+                return View(language);
             }
             catch
             {
                 return View();
             }
-
         }
 
-        // GET: Platform/Edit/5
+        // GET: Languages/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Platform/Edit/5
+        // POST: Languages/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -95,13 +89,13 @@ namespace Ivedix.Translator.Web.Controllers
             }
         }
 
-        // GET: Platform/Delete/5
+        // GET: Languages/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Platform/Delete/5
+        // POST: Languages/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)

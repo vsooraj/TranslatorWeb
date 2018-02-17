@@ -1,4 +1,4 @@
-﻿@model Platform
+﻿@model Language
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -6,7 +6,7 @@
 
 <div class="panel panel-default">
     <div class="panel-heading main-color-bg">
-        <h3 class="panel-title">Create Platform</h3>
+        <h3 class="panel-title">Create Language</h3>
     </div>
     <div class="panel-body">
         <div class="col-md-12">
@@ -20,6 +20,13 @@
                         <div class="col-md-10">
                             <input asp-for="Name" class="form-control" />
                             <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Description" class="col-md-2 control-label"></label>
+                        <div class="col-md-10">
+                            <input asp-for="Description" class="form-control" />
+                            <span asp-validation-for="Description" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="form-group">
