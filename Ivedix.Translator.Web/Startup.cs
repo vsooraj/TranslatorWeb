@@ -29,6 +29,8 @@ namespace Ivedix.Translator.Web
                 .AddEntityFrameworkStores<AppDbContext>();
 
             services.AddTransient<IPlatformRepository, PlatformRepository>();
+            services.AddTransient<ILanguageRepository, LanguageRepository>();
+
             //services.AddTransient<IPlatformRepository, MockPlatformRepository>();
             services.AddMvc();
         }
