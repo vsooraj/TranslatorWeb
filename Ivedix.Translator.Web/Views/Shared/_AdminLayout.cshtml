@@ -38,13 +38,14 @@
                 {
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="Admin">Dashboard</a></li>
-                        <li><a href="pages.html"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Windows <i class="fab fa-windows"></i></a></li>
-                        <li><a href="posts.html"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> IOS <i class="fab fa-apple"></i></a></li>
-                        <li><a href="users.html"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Android <i class="fab fa-android"></i></a></li>
+
                     </ul>
                     <form asp-area="" asp-controller="Account" asp-action="Logout" id="logoutForm"
                           method="post" class="navbar-right">
                         <ul class="nav navbar-nav navbar-right">
+                            <li><a href="pages.html"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Windows <i class="fab fa-windows"></i></a></li>
+                            <li><a href="posts.html"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> IOS <i class="fab fa-apple"></i></a></li>
+                            <li><a href="users.html"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Android <i class="fab fa-android"></i></a></li>
                             <li><a href="#">Welcome, @UserManager.GetUserName(User)</a></li>
                             <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
                         </ul>
