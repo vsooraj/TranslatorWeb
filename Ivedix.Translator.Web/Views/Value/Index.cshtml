@@ -1,4 +1,4 @@
-﻿@model TranslationViewModel
+﻿@model ValueViewModel
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -23,7 +23,7 @@
                     </th>
                     <th></th>
                 </tr>
-                @foreach (var item in Model.Translations)
+                @foreach (var item in Model.Platformkeys)
                 {
                     <tr>
                         <td>

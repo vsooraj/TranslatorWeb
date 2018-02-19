@@ -35,6 +35,8 @@ namespace Ivedix.Translator.Web
                 googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
             });
             services.AddTransient<IPlatformRepository, PlatformRepository>();
+            services.AddTransient<ILanguageRepository, LanguageRepository>();
+
             //services.AddTransient<IPlatformRepository, MockPlatformRepository>();
             services.AddMvc();
         }
