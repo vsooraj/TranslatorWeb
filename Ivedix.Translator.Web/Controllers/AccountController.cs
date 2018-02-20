@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -88,6 +90,41 @@ namespace Ivedix.Translator.Web.Controllers
                 if (returnUrl == null)
                     return RedirectToAction("index", "platform");
                 return Redirect(returnUrl);
+            }
+            else
+            {
+                // If the user does not have an account, then ask the user to create an account.
+                ViewData["ReturnUrl"] = returnUrl;
+                ViewData["LoginProvider"] = info.LoginProvider;
+                var email = info.Principal.FindFirstValue(ClaimTypes.Email);
+                return View("ExternalLogin", new ExternalLoginViewModel { Email = email });
+            }
+        }
+        public async Task<IActionResult> ExternalLoginConfirmation(ExternalLoginViewModel model, string returnUrl = null)
+        {
+            if (!ModelState.IsValid)
+                return View("ExternalLogin", model);
+            var user = await _userManager.FindByNameAsync(model.UserName);
+            if (user != null)
+            {
+                ModelState.AddModelError("UserName", $"username: {model.UserName} already exists");
+                return View("ExternalLogin", model);
+            }
+            var info = await _signInManager.GetExternalLoginInfoAsync();
+            if (info == null)
+            {
+                throw new ApplicationException("Error loading external login information during confirmation.");
+            }
+            user = new IdentityUser { UserName = model.UserName, Email = model.Email };
+            var result = await _userManager.CreateAsync(user);
+            if (result.Succeeded)
+            {
+                result = await _userManager.AddLoginAsync(user, info);
+                if (result.Succeeded)
+                {
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    return RedirectToAction("index", "platform");
+                }
             }
             return RedirectToAction("index", "home");
         }
