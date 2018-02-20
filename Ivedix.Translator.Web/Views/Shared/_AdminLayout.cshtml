@@ -40,12 +40,18 @@
                         <li class="active"><a href="Admin">Dashboard</a></li>
 
                     </ul>
+                    <ul class="nav navbar-nav">
+                        <li></li>
+                        <li><span></span></li>
+                        <li><a asp-controller="Download" asp-action="Download" asp-route-filename="Windows.xls"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Windows <i class="fab fa-windows"></i></a></li>
+                        <li><a asp-controller="Download" asp-action="Download" asp-route-filename="IOS.xls"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> IOS <i class="fab fa-apple"></i></a></li>
+                        <li><a asp-controller="Download" asp-action="Download" asp-route-filename="Android.xls"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Android <i class="fab fa-android"></i></a></li>
+
+                    </ul>
                     <form asp-area="" asp-controller="Account" asp-action="Logout" id="logoutForm"
                           method="post" class="navbar-right">
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="pages.html"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Windows <i class="fab fa-windows"></i></a></li>
-                            <li><a href="posts.html"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> IOS <i class="fab fa-apple"></i></a></li>
-                            <li><a href="users.html"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Android <i class="fab fa-android"></i></a></li>
+
                             <li><a href="#">Welcome, @UserManager.GetUserName(User)</a></li>
                             <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
                         </ul>
@@ -75,8 +81,8 @@
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <li><a type="button" data-toggle="modal" data-target="#addPage">Add Page</a></li>
-                            <li><a href="#">Add Post</a></li>
+                            <li><a type="button" data-toggle="modal" data-target="#addPage">Add Key</a></li>
+                            <li><a href="#">Add Value</a></li>
                             <li><a href="#">Add User</a></li>
                         </ul>
                     </div>
@@ -111,6 +117,7 @@
                             <a href="Translation" class="list-group-item"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span> Translations </a>
                             <a href="Log" class="list-group-item"><span class="glyphicon glyphicon-file" aria-hidden="true"></span> Log </a>
                             <a href="Log" class="list-group-item"><span class="glyphicon glyphicon-cloud" aria-hidden="true"></span> InApp </a>
+                            <a href="Download" class="list-group-item"><span class="glyphicon glyphicon-download" aria-hidden="true"></span> Download </a>
                         </div>
 
                         <div class="well">
